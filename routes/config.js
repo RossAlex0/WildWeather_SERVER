@@ -1,15 +1,15 @@
 const express = require("express");
-
-const mongoose = require('mongoose');
-
 const app = express();
 
-// app.use(cors());
-// const cors = require("cors");
+const { checkConnection } = require('../database/server');
+
+const router = require("./router");
+
+checkConnection();
+
+app.use("/api", router);
 
 app.use(express.json());
 
-const router = require("./router");
-app.use("/api", router);
 
 module.exports = app;
