@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const user = require("../controllers/UserActions");
-const test = require("../controllers/TestActions")
+const userActions = require("../controllers/UserActions");
+const testActions = require("../controllers/TestActions");
 
 
-router.get('/', test.test);
+//  ******* PATH ******* \\
 
-router.get('/users', user.test);
+
+router.get('/', testActions.test);
+
+router.get('/users', userActions.readAll);
+
 
 module.exports = router;
