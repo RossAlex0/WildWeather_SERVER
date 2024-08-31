@@ -4,6 +4,6 @@ const app = require("./routes/config");
 
 const port = process.env.APP_PORT;
 
-app.listen(port, () => {
-    console.log(`Serveur en écoute sur http://localhost:${port}`);
-});
+app.listen(3000, '0.0.0.0', () => {
+    console.log(`Server running at http://0.0.0.0:${port}`);
+  });
