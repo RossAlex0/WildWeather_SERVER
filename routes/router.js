@@ -10,7 +10,7 @@ const testActions = require("../controllers/TestActions");
 
 router.get('/', testActions.test);
 
-router.get('/users', userActions.readAll);
-
+router.get('/users', userActions.browse);
+router.post('/users', userActions.add);
 
 module.exports = router;
