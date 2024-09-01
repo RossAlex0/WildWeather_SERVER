@@ -1,14 +1,29 @@
 const user = require("../database/models/userSchema");
 
 
-const browse = async(req, res) => {
+const browse = async(req, res, next) => {
     try {
       const users = await user.find(); 
       res.json(users); 
     } catch (err) {
-      res.status(500).json({ error: err.message });
+      next(err)
     }
+};
+
+const read = async (req, res) => {
+  try {
+      const { email } = req.params;
+      const user = await user.findOne({ mail: email });
+
+      if (!user) {
+        res.status(404).json({ message: 'User not found' });
+      } else {
+        res.status(200).json(user);
+      }
+  } catch (err) {
+      next(err)
   }
+};
 
   const add = async (req, res) => {
     try {
@@ -17,9 +32,9 @@ const browse = async(req, res) => {
         await newUser.save();
         console.log('New User:', req.body);
         res.status(201).json({ message: 'New user created' });
-    } catch (error) {
-        res.status(500).json({ message: 'Error creating user', error: error.message });
+    } catch (err) {
+        next(err)
     }
 };
 
-  module.exports = { browse, add };
+  module.exports = { browse, add, read };
