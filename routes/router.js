@@ -11,6 +11,7 @@ const testActions = require("../controllers/TestActions");
 router.get('/', testActions.test);
 
 router.get('/users', userActions.browse);
+router.get('/users/:email', userActions.read);
 router.post('/users', userActions.add);
 
 module.exports = router;

@@ -10,15 +10,15 @@ const browse = async(req, res, next) => {
     }
 };
 
-const read = async (req, res) => {
+const read = async (req, res, next) => {
   try {
       const { email } = req.params;
-      const user = await user.findOne({ mail: email });
+      const userFound = await user.findOne({ mail: email });
 
-      if (!user) {
+      if (!userFound) {
         res.status(404).json({ message: 'User not found' });
       } else {
-        res.status(200).json(user);
+        res.status(200).json(userFound);
       }
   } catch (err) {
       next(err)
