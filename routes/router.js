@@ -15,6 +15,6 @@ router.post("/login", auth.comparePassword, login);
 router.get("/users", userActions.browse);
 router.get("/users/:email", userActions.read);
 
-router.post("/users", userActions.add);
+router.post("/users", auth.hashPassword, userActions.add);
 
 module.exports = router;
