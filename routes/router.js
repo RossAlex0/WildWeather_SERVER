@@ -4,16 +4,17 @@ const router = express.Router();
 const userActions = require("../controllers/UserActions");
 const testActions = require("../controllers/TestActions");
 const { login } = require("../controllers/loginActions");
-const { comparePassword } = require("../midlleware/compare");
+const auth = require("../midlleware/auth");
 
 //  ******* PATH ******* \\
 
 router.get("/", testActions.test);
 
-router.post("/login", comparePassword, login);
+router.post("/login", auth.comparePassword, login);
 
 router.get("/users", userActions.browse);
 router.get("/users/:email", userActions.read);
+
 router.post("/users", userActions.add);
 
 module.exports = router;
