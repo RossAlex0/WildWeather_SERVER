@@ -1,4 +1,4 @@
-const argon2 = requir("argon2");
+const argon2 = require("argon2");
 
 const User = require("../database/models/userSchema");
 
@@ -24,8 +24,6 @@ const hashPassword = async (req, res, next) => {
     next(error);
   }
 };
-
-const User = require("../database/models/userSchema");
 
 const comparePassword = async (req, res, next) => {
   try {
