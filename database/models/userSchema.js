@@ -39,7 +39,29 @@ userSchema.statics.readByEmail = async function (email) {
     return user;
   } catch (error) {
     throw new Error(
-      "Erreur lors de la récupération de l'utilisateur : " + error.message
+      "Erreur lors de la récupération de l'utilisateur : " +
+        `{${error.message}}`
+    );
+  }
+};
+
+userSchema.methods.update = async function (name, city, hashedPassword) {
+  try {
+    if (name) {
+      this.name = name;
+    }
+    if (city) {
+      this.city = city;
+    }
+    if (hashedPassword) {
+      this.hashedPassword = hashedPassword;
+    }
+    await this.save();
+    console.info(this);
+    return this;
+  } catch (error) {
+    throw new Error(
+      "Erreur lors de la mise à jour de l'utilisateur : " + `{${error.message}}`
     );
   }
 };
