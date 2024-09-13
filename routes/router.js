@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const userActions = require("../controllers/UserActions");
-const testActions = require("../controllers/TestActions");
+
 const { login } = require("../controllers/loginActions");
+
 const auth = require("../midlleware/auth");
 
 //  ******* PATH ******* \\
