@@ -17,4 +17,6 @@ router.get("/users/:email", userActions.read);
 
 router.post("/users", auth.hashPassword, userActions.add);
 
+router.put("/users/:id", auth.hashPassword, userActions.edit);
+
 module.exports = router;
