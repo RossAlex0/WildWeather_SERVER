@@ -19,4 +19,6 @@ router.post("/users", auth.hashPassword, userActions.add);
 
 router.put("/users/:id", auth.hashPassword, userActions.edit);
 
+router.delete("/users/:id", userActions.destroy);
+
 module.exports = router;
