@@ -9,8 +9,6 @@ const auth = require("../midlleware/auth");
 
 //  ******* PATH ******* \\
 
-router.get("/", testActions.test);
-
 router.post("/login", auth.comparePassword, login);
 
 router.get("/users", userActions.browse);
