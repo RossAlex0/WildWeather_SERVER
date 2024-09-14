@@ -18,7 +18,6 @@ const hashPassword = async (req, res, next) => {
 
     req.body.hashedPassword = hashedPassword;
 
-    console.info(req.body);
     next();
   } catch (error) {
     next(error);
