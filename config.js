@@ -19,7 +19,7 @@ app.use(cors());
 //**  Permet de lire les données JSON envoyées dans les requêtes  **\\
 app.use(express.json());
 
-//**  // Route les requêtes API vers le fichier "router"  **\\
+//**  Route les requêtes API vers le fichier "routes/router.js"  **\\
 const router = require("./routes/router");
 
 app.use("/api", router);
