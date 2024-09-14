@@ -16,4 +16,16 @@ const createToken = async (req, res, next) => {
   }
 };
 
-module.exports = { createToken };
+const verifyToken = async (req, res, next) => {
+  try {
+    const { authTokenWildApp } = req.cookies;
+
+    await jwt.verify(authTokenWildApp, process.env.APP_SECRET);
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createToken, verifyToken };
