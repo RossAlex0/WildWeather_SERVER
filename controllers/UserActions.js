@@ -34,7 +34,7 @@ const edit = async (req, res, next) => {
     }
     await userFound.update(name, city, hashedPassword);
 
-    res.status(200).send("Utilisateur mis à jour avec succès : ", userFound);
+    res.status(200).send(`Utilisateur mis à jour avec succès : ${userFound}`);
   } catch (err) {
     next(err);
   }
@@ -42,11 +42,12 @@ const edit = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   try {
-    const { name, mail, city, password } = req.body;
-    const newUser = new User({ name, mail, city, password });
+    console.info("depuis add 2");
+    const { name, mail, city, hashedPassword } = req.body;
+    const newUser = new User({ name, mail, city, hashedPassword });
     await newUser.save();
 
-    res.status(201).send("New user created : ", newUser);
+    res.status(201).send(`New user created : ${newUser}`);
   } catch (err) {
     next(err);
   }
