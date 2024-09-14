@@ -56,8 +56,9 @@ userSchema.methods.update = async function (name, city, hashedPassword) {
     if (hashedPassword) {
       this.hashedPassword = hashedPassword;
     }
+
     await this.save();
-    console.info(this);
+
     return this;
   } catch (error) {
     throw new Error(

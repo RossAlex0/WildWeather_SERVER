@@ -1,7 +1,5 @@
 const User = require("../database/models/userSchema");
 
-console.log(User.readByMail);
-
 const comparePassword = async (req, res, next) => {
   try {
     const { mail, password } = req.body;
