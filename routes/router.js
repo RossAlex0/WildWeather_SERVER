@@ -6,10 +6,11 @@ const userActions = require("../controllers/UserActions");
 const loginActions = require("../controllers/loginActions");
 
 const { hashPassword, comparePassword } = require("../middleware/password");
+const { createToken } = require("../middleware/token");
 
 //  ******* PATH ******* \\
 
-router.post("/login", comparePassword, loginActions.login);
+router.post("/login", comparePassword, createToken, loginActions.login);
 
 router.get("/users", userActions.browse);
 router.get("/users/:email", userActions.read);
