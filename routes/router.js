@@ -3,20 +3,20 @@ const router = express.Router();
 
 const userActions = require("../controllers/UserActions");
 
-const { login } = require("../controllers/loginActions");
+const loginActions = require("../controllers/loginActions");
 
-const auth = require("../midlleware/auth");
+const { hashPassword, comparePassword } = require("../middleware/password");
 
 //  ******* PATH ******* \\
 
-router.post("/login", auth.comparePassword, login);
+router.post("/login", comparePassword, loginActions.login);
 
 router.get("/users", userActions.browse);
 router.get("/users/:email", userActions.read);
 
-router.post("/users", auth.hashPassword, userActions.add);
+router.post("/users", hashPassword, userActions.add);
 
-router.put("/users/:id", auth.hashPassword, userActions.edit);
+router.put("/users/:id", hashPassword, userActions.edit);
 
 router.delete("/users/:id", userActions.destroy);
 

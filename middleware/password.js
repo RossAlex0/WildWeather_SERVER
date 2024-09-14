@@ -34,7 +34,7 @@ const comparePassword = async (req, res, next) => {
     }
 
     req.user = {
-      id: user.id,
+      id: user._id,
       name: user.name,
       mail: user.mail,
       city: user.city,
