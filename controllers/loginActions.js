@@ -1,8 +1,16 @@
 const login = async (req, res, next) => {
   try {
-    const user = req.user;
-
-    res.status(200).send({ message: "Connexion réussi", user: user });
+    res
+      .cookie("authTokenWildApp", req.token, {
+        httpOnly: true,
+      })
+      .json({
+        message: "Connection successful",
+        id: req.user.id,
+        name: req.user.name,
+        mail: req.user.mail,
+        city: req.user.city,
+      });
   } catch (error) {
     next(error);
   }
