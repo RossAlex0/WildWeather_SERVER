@@ -5,7 +5,7 @@ const userActions = require("../controllers/UserActions");
 
 const loginActions = require("../controllers/loginActions");
 
-const { hashPassword, comparePassword } = require("../midlleware/password");
+const { hashPassword, comparePassword } = require("../middleware/password");
 
 //  ******* PATH ******* \\
 
