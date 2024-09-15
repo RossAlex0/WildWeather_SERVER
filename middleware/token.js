@@ -20,9 +20,17 @@ const verifyToken = async (req, res, next) => {
   try {
     const { authTokenWildApp } = req.cookies;
 
-    await jwt.verify(authTokenWildApp, process.env.APP_SECRET);
-
-    next();
+    await jwt.verify(
+      authTokenWildApp,
+      process.env.APP_SECRET,
+      (err, decoded) => {
+        if (err) {
+          return res.status(401).send("Invalid token");
+        }
+        req.decoded = decoded;
+        next();
+      }
+    );
   } catch (error) {
     next(error);
   }
