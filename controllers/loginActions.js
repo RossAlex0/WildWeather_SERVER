@@ -16,4 +16,19 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { login };
+const loadUserCookie = async (req, res, next) => {
+  try {
+    const user = {
+      id: req.decoded.id,
+      name: req.decoded.name,
+      mail: req.decoded.mail,
+      city: req.decoded.city,
+    };
+
+    res.send(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { login, loadUserCookie };
