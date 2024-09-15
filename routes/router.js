@@ -14,7 +14,8 @@ router.post("/login", comparePassword, createToken, loginActions.login);
 router.post("/logout", verifyToken, logoutActions.logout);
 
 router.get("/users", userActions.browse);
-router.get("/users/:email", userActions.read);
+router.get("/users/:email", verifyToken, userActions.read);
+router.get("/userCookie", verifyToken, loginActions.loadUserCookie);
 
 router.post("/users", hashPassword, userActions.add);
 
