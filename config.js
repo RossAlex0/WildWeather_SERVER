@@ -14,7 +14,7 @@ app.use(cookieParser());
 //**  Permet de gérer les requêtes provenant d'autres domaines  **\\
 const cors = require("cors");
 
-app.use(cors());
+app.use(cors({ credentials: true }));
 
 //**  Permet de lire les données JSON envoyées dans les requêtes  **\\
 app.use(express.json());
