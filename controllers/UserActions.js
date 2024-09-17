@@ -12,8 +12,8 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const { email } = req.params;
-    const userFound = await User.findOne({ mail: email });
+    const { id } = req.params;
+    const userFound = await User.findById({ _id: id });
     if (!userFound) {
       res.status(404).send("User not found");
     }
@@ -28,7 +28,7 @@ const edit = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name, city, hashedPassword } = req.body;
-    const userFound = await User.findById(id);
+    const userFound = await User.findById({ _id: id });
     if (!userFound) {
       res.status(404).send("User not found");
     }
