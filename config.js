@@ -6,11 +6,6 @@ const { checkConnection } = require("./database/server");
 
 checkConnection();
 
-//**  Permet au serveur de lire les cookies **\\
-const cookieParser = require("cookie-parser");
-
-app.use(cookieParser());
-
 //**  Permet de gérer les requêtes provenant d'autres domaines  **\\
 const cors = require("cors");
 
