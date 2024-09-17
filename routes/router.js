@@ -8,16 +8,17 @@ const logoutActions = require("../controllers/logoutActions");
 const { hashPassword, comparePassword } = require("../middleware/password");
 const { createToken, verifyToken } = require("../middleware/token");
 
-//  ******* PATH ******* \\
+//  ******* LOG ******* \\
 
 router.post("/login", comparePassword, createToken, loginActions.login);
 router.post("/logout", verifyToken, logoutActions.logout);
 
-router.get("/users", userActions.browse);
-router.get("/users/:email", verifyToken, userActions.read);
-router.get("/userCookie", verifyToken, loginActions.loadUserCookie);
+//  ******* PATH ******* \\
 
-router.post("/users", hashPassword, userActions.add);
+router.get("/users", userActions.browse);
+router.get("/users/:id", verifyToken, userActions.read);
+
+router.post("/users", verifyToken, hashPassword, userActions.add);
 
 router.put("/users/:id", verifyToken, hashPassword, userActions.edit);
 
