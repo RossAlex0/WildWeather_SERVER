@@ -15,7 +15,7 @@ router.post("/logout", verifyToken, logoutActions.logout);
 
 //  ******* PATH ******* \\
 
-router.get("/users", userActions.browse);
+router.get("/users", verifyToken, userActions.browse);
 router.get("/users/:id", verifyToken, userActions.read);
 
 router.post("/users", verifyToken, hashPassword, userActions.add);
