@@ -15,12 +15,18 @@ router.post("/logout", verifyToken, logoutActions.logout);
 
 //  ******* PATH ******* \\
 
-router.get("/users", verifyToken, userActions.browse);
+router.get("/users", userActions.browse);
 router.get("/users/:id", verifyToken, userActions.read);
 
-router.post("/users", verifyToken, hashPassword, userActions.add);
+router.post("/users", hashPassword, userActions.add);
+router.post(
+  "/users/password/:id",
+  verifyToken,
+  loginActions.checkCurrentPassword
+);
 
-router.put("/users/:id", verifyToken, hashPassword, userActions.edit);
+router.put("/users/:id", verifyToken, userActions.edit);
+router.put("/users/password/:id", verifyToken, hashPassword, userActions.edit);
 
 router.delete("/users/:id", verifyToken, userActions.destroy);
 

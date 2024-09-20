@@ -27,16 +27,37 @@ const read = async (req, res, next) => {
 const edit = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { name, city, hashedPassword } = req.body;
-    const userFound = await User.findById({ _id: id });
-    if (!userFound) {
-      res.status(404).send("User not found");
-    }
-    await userFound.update(name, city, hashedPassword);
+    const { name, city, mail, hashedPassword } = req.body;
 
-    res
-      .status(200)
-      .send(`Utilisateur mis à jour avec succès : ${userFound._id}`);
+    if (name) {
+      await User.findByIdAndUpdate(
+        id,
+        { name },
+        { new: true, runValidators: true }
+      );
+    }
+    if (mail) {
+      await User.findByIdAndUpdate(
+        id,
+        { mail },
+        { new: true, runValidators: true }
+      );
+    }
+    if (city) {
+      await User.findByIdAndUpdate(
+        id,
+        { city },
+        { new: true, runValidators: true }
+      );
+    }
+    if (hashedPassword) {
+      await User.findByIdAndUpdate(
+        id,
+        { hashedPassword },
+        { new: true, runValidators: true }
+      );
+    }
+    res.status(200).send(`Utilisateur mis à jour avec succès : ${id}`);
   } catch (err) {
     next(err);
   }
