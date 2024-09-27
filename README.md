@@ -1,4 +1,4 @@
-### Server setup with MongoDB
+# Server setup with MongoDB
 
 ## First: Install dependencies =>
 
